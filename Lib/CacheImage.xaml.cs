@@ -13,7 +13,7 @@ using System.IO;
 using Microsoft.Phone.Net.NetworkInformation;
 using System.Diagnostics;
 
-namespace SampleApp
+namespace KhmelenkoLab
 {
     public partial class CacheImage : UserControl
     {
@@ -111,7 +111,7 @@ namespace SampleApp
                     if (imageUri.Scheme == "http" || imageUri.Scheme == "https")
                     {
                         var storage = IsolatedStorageFile.GetUserStoreForApplication();
-                        if (storage.FileExists(GetFileNameInIsolatedStorage(imageUri)))
+                        if (storage.FileExists(control.GetFileNameInIsolatedStorage(imageUri)))
                         {
                             control.LoadFromLocalStorage(imageUri, control.bitmapImage);
                         }
@@ -138,7 +138,6 @@ namespace SampleApp
         {
             var control = d as CacheImage;
             var placeholderPath = e.NewValue.ToString();
-
             if (!control._imageLoaded)
             {
                 control.bitmapImage.UriSource = new Uri(placeholderPath, UriKind.RelativeOrAbsolute);

@@ -1,0 +1,5 @@
+/SampleApp/Bin
+/SampleApp/obj
+/SampleApp/*.user
+/Lib/Bin
+/Lib/obj
