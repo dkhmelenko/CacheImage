@@ -9,9 +9,9 @@ using System.Resources;
 [assembly: AssemblyTitle("SampleApp")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("KhmelenkoLab")]
 [assembly: AssemblyProduct("SampleApp")]
-[assembly: AssemblyCopyright("Copyright ©  2015")]
+[assembly: AssemblyCopyright("KhmelenkoLab ©  2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
