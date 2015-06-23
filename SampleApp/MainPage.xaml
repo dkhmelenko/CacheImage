@@ -23,17 +23,17 @@
 
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock Text="MY APPLICATION" Style="{StaticResource PhoneTextNormalStyle}" Margin="12,0"/>
-            <TextBlock Text="page name" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+            <TextBlock Text="SAMPLEAPP" Style="{StaticResource PhoneTextNormalStyle}" Margin="12,0"/>
+            <TextBlock Text="cache image" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
 
-            <lib:CacheImage Url="https://www.hallaminternet.com/assets/URL-tagging-image.png" 
-                            Placeholder="/Assets/placeholder.png" 
-                            DecodePixelHeight ="100" DecodePixelWidth="150"
-                            Height="100" Width="150"/>
+            <lib:CacheImage Url="http://www.google.com/doodle4google/images/d4g_logo_global.jpg" 
+                            Placeholder="/Assets/placeholder.png"
+                            DecodePixelHeight ="300" DecodePixelWidth="450"
+                            Height="300" Width="450"/>
             
         </Grid>
 
