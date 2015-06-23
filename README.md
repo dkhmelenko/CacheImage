@@ -2,7 +2,18 @@
 CacheImage is a lightweight library, which introduces new control - CacheImage for Windows Phone 8 (Silverlight). This control can be used for caching images on disk (IsolatedStorage). As soon as image loaded from the web, local copy will be used. The file name of the local copy is a hash code of the web link. Also, this library provides an ability to set up placeholder, while the image is downloading. The idea of the control came from [here](http://chandermani.blogspot.de/2012/05/caching-images-downloaded-from-web-on.html).
 
 #Usage
-This section will describe how to use this library. Coming soon...
+This section will describe how to use this library.
+```xaml
+xmlns:lib="clr-namespace:KhmelenkoLab;assembly=CacheImage"
+    
+...
+    
+<lib:CacheImage Url="http://www.google.com/doodle4google/images/d4g_logo_global.jpg" 
+                Placeholder="/Assets/placeholder.png"
+                DecodePixelHeight="300" DecodePixelWidth="450"
+                />
+```
+The properties `DecodePixelHeight` and `DecodePixelWidth` are linked to appropriate property in `BitmapImage`.
 
 #Distribution
 The library CacheImage will be available on NuGet soon. Coming soon...
