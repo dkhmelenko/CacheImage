@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>$author$</authors>
+    <owners>$author$</owners>
+    <licenseUrl>https://github.com/brave-warrior/CacheImage#license</licenseUrl>
+    <projectUrl>https://github.com/brave-warrior/CacheImage</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>$description$</description>
+    <releaseNotes>Initial release.</releaseNotes>
+    <copyright>KhmelenkoLab 2015</copyright>
+    <tags>CacheImage Cache</tags>
+  </metadata>
+</package>
