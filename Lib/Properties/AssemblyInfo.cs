@@ -7,7 +7,7 @@ using System.Resources;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("CacheImage")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("CacheImage control can cache the image to the IsolatedStorage and use the cached copy instead of loading it again")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("KhmelenkoLab")]
 [assembly: AssemblyProduct("CacheImage")]
