@@ -16,7 +16,7 @@ xmlns:lib="clr-namespace:KhmelenkoLab;assembly=CacheImage"
 The properties `DecodePixelHeight` and `DecodePixelWidth` are linked to appropriate property in `BitmapImage`.
 
 #Distribution
-The library CacheImage will be available on NuGet soon. Coming soon...
+The library CacheImage is available in [NuGet](https://www.nuget.org/packages/CacheImage).
 
 #Contribution
 If you have any suggestions or ideas, feel free to create pull request.
