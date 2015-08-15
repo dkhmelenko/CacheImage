@@ -11,6 +11,12 @@
 
     <Grid x:Name="LayoutRoot" Background="{StaticResource PhoneChromeBrush}">
 
+        <Image x:Name="placeholder" CacheMode="BitmapCache">
+            <Image.Source>
+                <BitmapImage x:Name="placeholderImage" CreateOptions="BackgroundCreation" />
+            </Image.Source>
+        </Image>
+        
         <Image x:Name="image" CacheMode="BitmapCache">
             <Image.Source>
                 <BitmapImage x:Name="bitmapImage" CreateOptions="BackgroundCreation" />
