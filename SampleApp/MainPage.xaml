@@ -30,7 +30,8 @@
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
 
-            <lib:CacheImage Url="http://www.google.com/doodle4google/images/d4g_logo_global.jpg" 
+            <lib:CacheImage x:Name="cacheImage"
+                            Url="http://www.google.com/doodle4google/images/d4g_logo_global.jpg" 
                             Placeholder="/Assets/placeholder.png"
                             DecodePixelHeight ="300" DecodePixelWidth="450"
                             Stretch="Uniform"

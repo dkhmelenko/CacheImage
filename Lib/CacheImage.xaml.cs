@@ -13,6 +13,7 @@ using System.IO;
 using Microsoft.Phone.Net.NetworkInformation;
 using System.Diagnostics;
 using System.Windows.Media;
+using System.ComponentModel;
 
 namespace KhmelenkoLab
 {
@@ -155,6 +156,8 @@ namespace KhmelenkoLab
 
         private const string imageStorageFolder = "ImagesCache";
 
+        private WebClient _webClient = new WebClient();
+
         public CacheImage()
         {
             InitializeComponent();
@@ -294,8 +297,13 @@ namespace KhmelenkoLab
         /// <param name="bitmap">Bitmap for loaded image</param>
         private void LoadFromWebAndCache(Uri imageUri, BitmapImage bitmap)
         {
-            WebClient webClient = new WebClient();
-            webClient.OpenReadCompleted += (o, e) =>
+            if(_webClient.IsBusy)
+            {
+                _webClient.CancelAsync();
+                _webClient = new WebClient();
+            }
+            
+            _webClient.OpenReadCompleted += (o, e) =>
             {
                 if (e.Error != null || e.Cancelled)
                     return;
@@ -304,7 +312,7 @@ namespace KhmelenkoLab
                 bitmap.SetSource(e.Result);
                 e.Result.Close();
             };
-            webClient.OpenReadAsync(imageUri);
+            _webClient.OpenReadAsync(imageUri);
         }
 
         /// <summary>
