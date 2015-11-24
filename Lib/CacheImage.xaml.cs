@@ -308,9 +308,13 @@ namespace KhmelenkoLab
                 if (e.Error != null || e.Cancelled)
                     return;
 
-                WriteToIsolatedStorage(e.Result, GetFileNameInIsolatedStorage(imageUri));
-                bitmap.SetSource(e.Result);
-                e.Result.Close();
+                var stream = e.Result;
+                if (stream.CanRead)
+                {
+                    WriteToIsolatedStorage(e.Result, GetFileNameInIsolatedStorage(imageUri));
+                    bitmap.SetSource(e.Result);
+                    e.Result.Close();
+                }
             };
             _webClient.OpenReadAsync(imageUri);
         }
