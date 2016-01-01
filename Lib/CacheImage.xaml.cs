@@ -172,6 +172,7 @@ namespace KhmelenkoLab
             Deployment.Current.Dispatcher.BeginInvoke(() =>
                 {
                     var control = d as CacheImage;
+                    control.Visibility = Visibility.Visible;
 
                     string url = e.NewValue.ToString();
                     Uri imageUri = new Uri(url);
@@ -311,6 +312,9 @@ namespace KhmelenkoLab
                 var stream = e.Result;
                 if (stream.CanRead)
                 {
+                    // hide placeholder
+                    placeholder.Visibility = Visibility.Collapsed;
+
                     WriteToIsolatedStorage(e.Result, GetFileNameInIsolatedStorage(imageUri));
                     bitmap.SetSource(e.Result);
                     e.Result.Close();
@@ -326,6 +330,9 @@ namespace KhmelenkoLab
         /// <returns>Loaded image</returns>
         private void LoadFromLocalStorage(Uri imageUri, BitmapImage bitmap)
         {
+            // hide placeholder
+            placeholder.Visibility = Visibility.Collapsed;
+
             string isolatedStoragePath = GetFileNameInIsolatedStorage(imageUri);
             var storage = IsolatedStorageFile.GetUserStoreForApplication();
             using (var sourceFile = storage.OpenFile(isolatedStoragePath, FileMode.Open, FileAccess.Read))
