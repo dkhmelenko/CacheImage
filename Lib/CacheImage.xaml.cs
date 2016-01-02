@@ -280,8 +280,7 @@ namespace KhmelenkoLab
                 var stream = e.Result;
                 if (stream.CanRead)
                 {
-                    // hide placeholder
-                    placeholder.Visibility = Visibility.Collapsed;
+                    bitmap.ImageOpened += bitmap_ImageOpened;
 
                     WriteToIsolatedStorage(e.Result, GetFileNameInIsolatedStorage(imageUri));
                     bitmap.SetSource(e.Result);
@@ -291,6 +290,20 @@ namespace KhmelenkoLab
             _webClient.OpenReadAsync(imageUri);
         }
 
+        void bitmap_ImageOpened(object sender, RoutedEventArgs e)
+        {
+            (sender as BitmapImage).ImageOpened -= bitmap_ImageOpened;
+            HidePlaceholder();
+        }
+
+        /// <summary>
+        /// Hides placeholder
+        /// </summary>
+        private void HidePlaceholder()
+        {
+            placeholder.Visibility = Visibility.Collapsed;
+        }
+
         /// <summary>
         /// Loads an image from the local storage
         /// </summary>
@@ -298,15 +311,14 @@ namespace KhmelenkoLab
         /// <returns>Loaded image</returns>
         private void LoadFromLocalStorage(Uri imageUri, BitmapImage bitmap)
         {
-            // hide placeholder
-            placeholder.Visibility = Visibility.Collapsed;
-
             string isolatedStoragePath = GetFileNameInIsolatedStorage(imageUri);
             var storage = IsolatedStorageFile.GetUserStoreForApplication();
             using (var sourceFile = storage.OpenFile(isolatedStoragePath, FileMode.Open, FileAccess.Read))
             {
                 bitmap.SetSource(sourceFile);
             }
+
+            HidePlaceholder();
         }
 
         /// <summary>
