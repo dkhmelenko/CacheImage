@@ -23,14 +23,10 @@ namespace KhmelenkoLab
         #region Dependency Properties
 
         // URL
-        public static string GetUrl(DependencyObject obj)
+        public string Url
         {
-            return (string)obj.GetValue(UrlProperty);
-        }
-
-        public static void SetUrl(DependencyObject obj, string value)
-        {
-            obj.SetValue(UrlProperty, value);
+            get { return base.GetValue(UrlProperty) as string; }
+            set { base.SetValue(UrlProperty, value); }
         }
 
         // Using a DependencyProperty as the backing store for Url.  This enables animation, styling, binding, etc...
@@ -39,14 +35,10 @@ namespace KhmelenkoLab
 
 
         // Placeholder
-        public static string GetPlaceholder(DependencyObject obj)
+        public string Placeholder
         {
-            return (string)obj.GetValue(PlaceholderProperty);
-        }
-
-        public static void SetPlaceholder(DependencyObject obj, string value)
-        {
-            obj.SetValue(PlaceholderProperty, value);
+            get { return base.GetValue(PlaceholderProperty) as string; }
+            set { base.SetValue(PlaceholderProperty, value); }
         }
 
         // Using a DependencyProperty as the backing store for Placeholder.  This enables animation, styling, binding, etc...
@@ -55,14 +47,10 @@ namespace KhmelenkoLab
 
 
         // DecodePixelHeight
-        public static int GetDecodePixelHeight(DependencyObject obj)
+        public int DecodePixelHeight
         {
-            return (int)obj.GetValue(DecodePixelHeightProperty);
-        }
-
-        public static void SetDecodePixelHeight(DependencyObject obj, int value)
-        {
-            obj.SetValue(DecodePixelHeightProperty, value);
+            get { return (int)base.GetValue(DecodePixelHeightProperty); }
+            set { base.SetValue(DecodePixelHeightProperty, value); }
         }
 
         // Using a DependencyProperty as the backing store for DecodePixelHeight.  This enables animation, styling, binding, etc...
@@ -71,14 +59,10 @@ namespace KhmelenkoLab
 
 
         // DecodePixelWidth
-        public static int GetDecodePixelWidth(DependencyObject obj)
+        public int DecodePixelWidth
         {
-            return (int)obj.GetValue(DecodePixelWidthProperty);
-        }
-
-        public static void SetDecodePixelWidth(DependencyObject obj, int value)
-        {
-            obj.SetValue(DecodePixelWidthProperty, value);
+            get { return (int)base.GetValue(DecodePixelWidthProperty); }
+            set { base.SetValue(DecodePixelWidthProperty, value); }
         }
 
         // Using a DependencyProperty as the backing store for DecodePixelWidth.  This enables animation, styling, binding, etc...
@@ -87,14 +71,10 @@ namespace KhmelenkoLab
 
 
         // DecodePixelWIdth for Placeholder
-        public static int GetDecodePixelWidthPlaceholder(DependencyObject obj)
+        public int DecodePixelWidthPlaceholder
         {
-            return (int)obj.GetValue(DecodePixelWidthPlaceholderProperty);
-        }
-
-        public static void SetDecodePixelWidthPlaceholder(DependencyObject obj, int value)
-        {
-            obj.SetValue(DecodePixelWidthPlaceholderProperty, value);
+            get { return (int)base.GetValue(DecodePixelWidthPlaceholderProperty); }
+            set { base.SetValue(DecodePixelWidthPlaceholderProperty, value); }
         }
 
         // Using a DependencyProperty as the backing store for DecodePixelWidthPlaceholder.  This enables animation, styling, binding, etc...
@@ -104,14 +84,10 @@ namespace KhmelenkoLab
 
 
         // DecodePixelHeight for Placeholder
-        public static int GetDecodePixelHeightPlaceholder(DependencyObject obj)
+        public int DecodePixelHeightPlaceholder
         {
-            return (int)obj.GetValue(DecodePixelHeightPlaceholderProperty);
-        }
-
-        public static void SetDecodePixelHeightPlaceholder(DependencyObject obj, int value)
-        {
-            obj.SetValue(DecodePixelHeightPlaceholderProperty, value);
+            get { return (int)base.GetValue(DecodePixelHeightPlaceholderProperty); }
+            set { base.SetValue(DecodePixelHeightPlaceholderProperty, value); }
         }
 
         // Using a DependencyProperty as the backing store for DecodePixelHeightPlaceholder.  This enables animation, styling, binding, etc...
@@ -120,14 +96,10 @@ namespace KhmelenkoLab
 
 
         // Stretch
-        public static Stretch GetStretch(DependencyObject obj)
+        public Stretch Stretch
         {
-            return (Stretch)obj.GetValue(StretchProperty);
-        }
-
-        public static void SetStretch(DependencyObject obj, Stretch value)
-        {
-            obj.SetValue(StretchProperty, value);
+            get { return (Stretch)base.GetValue(StretchProperty); }
+            set { base.SetValue(StretchProperty, value); }
         }
 
         // Using a DependencyProperty as the backing store for Stretch.  This enables animation, styling, binding, etc...
@@ -136,14 +108,10 @@ namespace KhmelenkoLab
 
 
         // Stretch for placeholder
-        public static Stretch GetStretchPlaceholder(DependencyObject obj)
+        public Stretch StretchPlaceholder
         {
-            return (Stretch)obj.GetValue(StretchPlaceholderProperty);
-        }
-
-        public static void SetStretchPlaceholder(DependencyObject obj, Stretch value)
-        {
-            obj.SetValue(StretchPlaceholderProperty, value);
+            get { return (Stretch)base.GetValue(StretchPlaceholderProperty); }
+            set { base.SetValue(StretchPlaceholderProperty, value); }
         }
 
         // Using a DependencyProperty as the backing store for StretchPlaceholder.  This enables animation, styling, binding, etc...
