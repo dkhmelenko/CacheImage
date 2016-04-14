@@ -1,10 +1,9 @@
 # Project description
 [![Latest stable version](https://img.shields.io/nuget/v/CacheImage.svg)](https://www.nuget.org/packages/CacheImage)
 
-CacheImage is a lightweight library, which introduces new control - CacheImage for Windows Phone 8/8.1 (Silverlight). This control can be used for caching images on disk (IsolatedStorage). As soon as image loaded from the web, local copy will be used. The file name of the local copy is a hash code of the web link. Also, this library provides an ability to set up placeholder, while the image is downloading. The idea of the control came from [here](http://chandermani.blogspot.de/2012/05/caching-images-downloaded-from-web-on.html).
+CacheImage is a lightweight library, which introduces new control - CacheImage for Windows Phone 8/8.1 (Silverlight). This control can be used for caching images on disk (IsolatedStorage). As soon as image loaded from the web, local copy will be used. The file name of the local copy contains a hash code of the web link. Also, this library provides an ability to set up placeholder, while the image is downloading. The idea of the control came from [here](http://chandermani.blogspot.de/2012/05/caching-images-downloaded-from-web-on.html).
 
 #Usage
-This section will describe how to use this library.
 ```xaml
 xmlns:lib="clr-namespace:KhmelenkoLab;assembly=CacheImage"
     
@@ -29,6 +28,8 @@ If you have any suggestions or ideas, feel free to create pull request.
 
 #Warranties
 This library can be used in your projects, however it requires more testing (unit tests, performance tests).
+This library was tested only for Windows Phone (Silverlight).
+Support of Windows 8 and Windows 10 was not tested yet.
 
 In case you found any problem, please submit an issue or contact me.
 
