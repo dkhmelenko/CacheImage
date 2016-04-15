@@ -3,3 +3,5 @@
 /SampleApp/*.user
 /Lib/Bin
 /Lib/obj
+/CacheImage-UWP/bin
+/CacheImage-UWP/obj
