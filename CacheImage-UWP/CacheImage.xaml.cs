@@ -3,6 +3,8 @@ using System.Diagnostics;
 using System.IO;
 using System.IO.IsolatedStorage;
 using System.Net.NetworkInformation;
+using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.Storage.Streams;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -171,16 +173,15 @@ namespace CacheImage
         /// </summary>
         private static async void OnPlaceholderChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            await CoreWindow.GetForCurrentThread().Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            await Window.Current.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
              {
                  var control = d as CacheImage;
                  if (control != null)
                  {
-                     var placeholderPath = e.NewValue.ToString();
-                     control.placeholderImage.UriSource = new Uri(placeholderPath, UriKind.RelativeOrAbsolute);
+                     var placeholderPath = "ms-appx://" + e.NewValue.ToString();
+                     control.placeholderImage.UriSource = new Uri(placeholderPath);
                  }
              });
-
         }
 
         /// <summary>
@@ -274,18 +275,20 @@ namespace CacheImage
                 {
                     response.EnsureSuccessStatusCode();
 
-                    using (var inputStream = await response.Content.ReadAsInputStreamAsync())
-                    {
-                        // save image
-                        WriteToIsolatedStorage(inputStream.AsStreamForRead(), GetFileNameInIsolatedStorage(imageUri));
+                    var imageBuffer = await response.Content.ReadAsBufferAsync();
 
-                        // apply image 
-                        var randomAccessStream = inputStream.AsStreamForRead().AsRandomAccessStream();
-                        await bitmap.SetSourceAsync(randomAccessStream);
+                    // save image
+                    WriteToIsolatedStorage(imageBuffer.AsStream(), GetFileNameInIsolatedStorage(imageUri));
 
+                    // apply image
+                    InMemoryRandomAccessStream stream = new InMemoryRandomAccessStream();
+                    DataWriter writer = new DataWriter(stream.GetOutputStreamAt(0));
+                    writer.WriteBytes(imageBuffer.ToArray());
+                    await writer.StoreAsync();
 
-                        HidePlaceholder();
-                    }
+                    bitmap.SetSource(stream);
+
+                    HidePlaceholder();
                 }
             }
         }
