@@ -1,0 +1,26 @@
+﻿<Page
+    x:Class="SampleApp_UWP.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:SampleApp_UWP"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:cacheImage="using:CacheImage"
+    mc:Ignorable="d">
+
+
+    <!--ContentPanel - place additional content here-->
+    <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+
+        <cacheImage:CacheImage x:Name="cacheImage"
+                            Url="http://www.raize.ch/Reisen/velo-eurasien/karten-rollover/western-tibet-highway_satellitenbild_grossplus.jpg" 
+                            Placeholder="/Assets/placeholder.png"
+                            DecodePixelHeight ="300" DecodePixelWidth="450"
+                            Stretch="UniformToFill"
+                            StretchPlaceholder="UniformToFill"
+                            DecodePixelHeightPlaceholder="250" DecodePixelWidthPlaceholder="400"
+                            />
+
+    </Grid>
+
+</Page>
