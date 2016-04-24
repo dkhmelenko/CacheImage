@@ -49,15 +49,15 @@ namespace SampleApp_UWP
             list.Add(image);
 
             image = new Image();
-            image.Url = "https://www.random.org/analysis/randbitmap-rdo.png";
+            image.Url = "https://www.petfinder.com/wp-content/uploads/2012/11/99233806-bringing-home-new-cat-632x475.jpg";
             list.Add(image);
 
             image = new Image();
-            image.Url = "http://e2ua.com/data/wallpapers/22/WDF_701465.jpg";
+            image.Url = "https://media-cdn.tripadvisor.com/media/photo-s/01/90/78/c5/sunset-over-dinner-nice.jpg";
             list.Add(image);
 
             image = new Image();
-            image.Url = "http://www.randomwebsite.com/images/head.jpg";
+            image.Url = "https://upload.wikimedia.org/wikipedia/commons/1/1e/Large_Siamese_cat_tosses_a_mouse.jpg";
             list.Add(image);
 
             image = new Image();
@@ -65,7 +65,7 @@ namespace SampleApp_UWP
             list.Add(image);
 
             image = new Image();
-            image.Url = "http://e2ua.com/data/wallpapers/110/WDF_1528766.jpg";
+            image.Url = "http://animaliaz-life.com/data_images/cat/cat2.jpg";
             list.Add(image);
 
             image = new Image();
@@ -73,7 +73,7 @@ namespace SampleApp_UWP
             list.Add(image);
 
             image = new Image();
-            image.Url = "http://e2ua.com/data/wallpapers/70/WDF_1153959.jpg";
+            image.Url = "http://www.zastavki.com/pictures/1600x1200/2010/Animals_Cats_Nice_kittens_023054_.jpg";
             list.Add(image);
 
             image = new Image();
@@ -105,11 +105,11 @@ namespace SampleApp_UWP
             list.Add(image);
 
             image = new Image();
-            image.Url = "http://e2ua.com/data/wallpapers/11/WDF_595834.jpg";
+            image.Url = "https://i.ytimg.com/vi/icqDxNab3Do/maxresdefault.jpg";
             list.Add(image);
 
             image = new Image();
-            image.Url = "http://7-themes.com/data_images/out/72/7016712-nice-love-wallpaper-27705.jpg";
+            image.Url = "http://d2118lkw40i39g.cloudfront.net/wp-content/uploads/2015/06/cats.jpg";
             list.Add(image);
 
             image = new Image();
@@ -125,7 +125,7 @@ namespace SampleApp_UWP
             list.Add(image);
 
             image = new Image();
-            image.Url = "http://feelgrafix.com/data_images/out/12/861226-nice-wallpaper.jpg";
+            image.Url = "https://www.petfinder.com/wp-content/uploads/2012/11/101438745-cat-conjunctivitis-causes.jpg";
             list.Add(image);
 
             image = new Image();
@@ -149,7 +149,7 @@ namespace SampleApp_UWP
             list.Add(image);
 
             image = new Image();
-            image.Url = "http://feelgrafix.com/data_images/out/24/944669-nature.jpg";
+            image.Url = "https://i.ytimg.com/vi/gxmHOwWh-i4/maxresdefault.jpg";
             list.Add(image);
 
             image = new Image();
