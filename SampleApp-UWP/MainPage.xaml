@@ -12,14 +12,23 @@
     <!--ContentPanel - place additional content here-->
     <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
 
-        <cacheImage:CacheImage x:Name="cacheImage"
-                            Url="http://www.raize.ch/Reisen/velo-eurasien/karten-rollover/western-tibet-highway_satellitenbild_grossplus.jpg" 
+        
+
+        <ListView x:Name="listView" ItemsSource="{Binding Images}" ShowsScrollingPlaceholders="True"
+                 >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <cacheImage:CacheImage x:Name="cacheImage"
+                            Url="{Binding Url}" 
                             Placeholder="/Assets/placeholder.png"
                             DecodePixelHeight ="300" DecodePixelWidth="450"
                             Stretch="UniformToFill"
                             StretchPlaceholder="UniformToFill"
                             DecodePixelHeightPlaceholder="250" DecodePixelWidthPlaceholder="400"
                             />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
 
     </Grid>
 
