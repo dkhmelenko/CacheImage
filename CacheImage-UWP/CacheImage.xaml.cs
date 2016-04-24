@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
-using System.IO.IsolatedStorage;
 using System.Net.NetworkInformation;
 using System.Runtime.InteropServices.WindowsRuntime;
-using System.Threading.Tasks;
 using Windows.Storage.Streams;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
@@ -137,7 +135,7 @@ namespace CacheImage
         private static async void OnUrlChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             // put the task into the queue
-            await CoreWindow.GetForCurrentThread().Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            await CoreWindow.GetForCurrentThread().Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
             {
                 var control = d as CacheImage;
                 string url = e.NewValue.ToString();
@@ -149,8 +147,9 @@ namespace CacheImage
                     control.Visibility = Visibility.Visible;
                     if (imageUri.Scheme == "http" || imageUri.Scheme == "https")
                     {
-                        var storage = IsolatedStorageFile.GetUserStoreForApplication();
-                        if (storage.FileExists(control.GetFileNameInIsolatedStorage(imageUri)))
+                        var filename = control.GetFileNameInIsolatedStorage(imageUri);
+                        bool fileExists = await FileStorage.FileExists(filename);
+                        if (fileExists)
                         {
                             control.LoadFromLocalStorage(imageUri, control.bitmapImage);
                         }
@@ -289,7 +288,7 @@ namespace CacheImage
                         await bitmap.SetSourceAsync(stream);
 
                         // save image
-                        WriteToIsolatedStorage(imageBuffer.AsStream(), GetFileNameInIsolatedStorage(imageUri));
+                        await FileStorage.WriteFile(GetFileNameInIsolatedStorage(imageUri), imageBuffer);
 
                         HidePlaceholder();
                     }
@@ -331,11 +330,8 @@ namespace CacheImage
             try
             {
                 string isolatedStoragePath = GetFileNameInIsolatedStorage(imageUri);
-                var storage = IsolatedStorageFile.GetUserStoreForApplication();
-                using (var sourceFile = storage.OpenFile(isolatedStoragePath, FileMode.Open, FileAccess.Read))
-                {
-                    await bitmap.SetSourceAsync(sourceFile.AsRandomAccessStream());
-                }
+                var buffer = await FileStorage.ReadFile(isolatedStoragePath);
+                await bitmap.SetSourceAsync(buffer.AsStream().AsRandomAccessStream());
 
                 HidePlaceholder();
             }
@@ -349,55 +345,14 @@ namespace CacheImage
         }
 
         /// <summary>
-        /// Writes the stream data to isolated storage
-        /// </summary>
-        /// <param name="inputStream">Input stream</param>
-        /// <param name="fileName">File name</param>
-        private void WriteToIsolatedStorage(Stream inputStream, string fileName)
-        {
-            var storage = IsolatedStorageFile.GetUserStoreForApplication();
-            IsolatedStorageFileStream outputStream = null;
-            try
-            {
-                if (!storage.DirectoryExists(ImageStorageFolder))
-                {
-                    storage.CreateDirectory(ImageStorageFolder);
-                }
-                if (storage.FileExists(fileName))
-                {
-                    storage.DeleteFile(fileName);
-                }
-                outputStream = storage.CreateFile(fileName);
-                byte[] buffer = new byte[32768];
-                int read;
-                while ((read = inputStream.Read(buffer, 0, buffer.Length)) > 0)
-                {
-                    outputStream.Write(buffer, 0, read);
-                }
-            }
-            catch (Exception e)
-            {
-                // ignore exceptions
-                Debug.WriteLine(e);
-            }
-            finally
-            {
-                if (outputStream != null)
-                {
-                    outputStream.Flush();
-                    outputStream.Dispose();
-                }
-            }
-        }
-
-        /// <summary>
         /// Gets the file name in isolated storage for the Uri specified. This name should be used to search in the isolated storage.
         /// </summary>
         /// <param name="uri">The URI.</param>
         /// <returns></returns>
         public string GetFileNameInIsolatedStorage(Uri uri)
         {
-            return ImageStorageFolder + "\\" + uri.AbsoluteUri.GetHashCode() + ".img";
+            var hash = EncryptionUtils.GetMD5(uri.AbsoluteUri);
+            return hash;
         }
     }
 }

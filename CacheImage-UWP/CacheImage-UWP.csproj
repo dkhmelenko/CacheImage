@@ -110,6 +110,8 @@
     <Compile Include="CacheImage.xaml.cs">
       <DependentUpon>CacheImage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="EncryptionUtils.cs" />
+    <Compile Include="FileStorage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\CacheImage_UWP.rd.xml" />
   </ItemGroup>
