@@ -4,6 +4,7 @@ using System.IO;
 using System.IO.IsolatedStorage;
 using System.Net.NetworkInformation;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Storage.Streams;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
@@ -139,12 +140,13 @@ namespace CacheImage
             await CoreWindow.GetForCurrentThread().Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
                 var control = d as CacheImage;
-                if (control != null)
+                string url = e.NewValue.ToString();
+                Uri imageUri;
+                Uri.TryCreate(url, UriKind.Absolute, out imageUri);
+
+                if (control != null && imageUri != null)
                 {
                     control.Visibility = Visibility.Visible;
-
-                    string url = e.NewValue.ToString();
-                    Uri imageUri = new Uri(url);
                     if (imageUri.Scheme == "http" || imageUri.Scheme == "https")
                     {
                         var storage = IsolatedStorageFile.GetUserStoreForApplication();
@@ -269,27 +271,36 @@ namespace CacheImage
         /// <param name="bitmap">Bitmap for loaded image</param>
         private async void LoadFromWebAndCache(Uri imageUri, BitmapImage bitmap)
         {
-            using (HttpClient client = new HttpClient())
+            try
             {
-                using (var response = await client.GetAsync(imageUri))
+                using (HttpClient client = new HttpClient())
                 {
-                    response.EnsureSuccessStatusCode();
+                    using (var response = await client.GetAsync(imageUri))
+                    {
+                        response.EnsureSuccessStatusCode();
 
-                    var imageBuffer = await response.Content.ReadAsBufferAsync();
+                        var imageBuffer = await response.Content.ReadAsBufferAsync();
 
-                    // save image
-                    WriteToIsolatedStorage(imageBuffer.AsStream(), GetFileNameInIsolatedStorage(imageUri));
+                        // apply image
+                        InMemoryRandomAccessStream stream = new InMemoryRandomAccessStream();
+                        DataWriter writer = new DataWriter(stream.GetOutputStreamAt(0));
+                        writer.WriteBytes(imageBuffer.ToArray());
+                        await writer.StoreAsync();
+                        await bitmap.SetSourceAsync(stream);
 
-                    // apply image
-                    InMemoryRandomAccessStream stream = new InMemoryRandomAccessStream();
-                    DataWriter writer = new DataWriter(stream.GetOutputStreamAt(0));
-                    writer.WriteBytes(imageBuffer.ToArray());
-                    await writer.StoreAsync();
+                        // save image
+                        WriteToIsolatedStorage(imageBuffer.AsStream(), GetFileNameInIsolatedStorage(imageUri));
 
-                    bitmap.SetSource(stream);
-
-                    HidePlaceholder();
+                        HidePlaceholder();
+                    }
                 }
+            }
+            catch (Exception e)
+            {
+                ShowPlaceholder();
+
+                Debug.WriteLine("Unable to download or save image: " + imageUri);
+                Debug.WriteLine(e.ToString());
             }
         }
 
@@ -302,6 +313,14 @@ namespace CacheImage
         }
 
         /// <summary>
+        /// Shows placeholder
+        /// </summary>
+        private void ShowPlaceholder()
+        {
+            placeholder.Visibility = Visibility.Visible;
+        }
+
+        /// <summary>
         /// Loads an image from the local storage
         /// </summary>
         /// <param name="imageUri">Image URI</param>
@@ -309,14 +328,24 @@ namespace CacheImage
         /// <returns>Loaded image</returns>
         private async void LoadFromLocalStorage(Uri imageUri, BitmapImage bitmap)
         {
-            string isolatedStoragePath = GetFileNameInIsolatedStorage(imageUri);
-            var storage = IsolatedStorageFile.GetUserStoreForApplication();
-            using (var sourceFile = storage.OpenFile(isolatedStoragePath, FileMode.Open, FileAccess.Read))
+            try
             {
-                await bitmap.SetSourceAsync(sourceFile.AsRandomAccessStream());
-            }
+                string isolatedStoragePath = GetFileNameInIsolatedStorage(imageUri);
+                var storage = IsolatedStorageFile.GetUserStoreForApplication();
+                using (var sourceFile = storage.OpenFile(isolatedStoragePath, FileMode.Open, FileAccess.Read))
+                {
+                    await bitmap.SetSourceAsync(sourceFile.AsRandomAccessStream());
+                }
 
-            HidePlaceholder();
+                HidePlaceholder();
+            }
+            catch (Exception e)
+            {
+                ShowPlaceholder();
+
+                Debug.WriteLine("Unable to load image from storage: " + imageUri);
+                Debug.WriteLine(e.ToString());
+            }
         }
 
         /// <summary>
