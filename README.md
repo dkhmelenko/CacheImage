@@ -1,11 +1,11 @@
 # Project description
 [![Latest stable version](https://img.shields.io/nuget/v/CacheImage.svg)](https://www.nuget.org/packages/CacheImage)
 
-CacheImage is a lightweight library, which introduces new control - CacheImage for Windows Phone 8/8.1 (Silverlight). This control can be used for caching images on disk (IsolatedStorage). As soon as image loaded from the web, local copy will be used. The file name of the local copy contains a hash code of the web link. Also, this library provides an ability to set up placeholder, while the image is downloading. The idea of the control came from [here](http://chandermani.blogspot.de/2012/05/caching-images-downloaded-from-web-on.html).
+CacheImage is a lightweight library, which introduces new control - CacheImage for Windows Phone 8/8.1 (Silverlight) and Universal Windows Platform (UWP Windows 10). This control can be used for caching images on disk. As soon as image loaded from the web, local copy will be used. The file name of the local copy contains a hash of the web link. Also, this library provides an ability to set up placeholder, while the image is downloading. The idea of the control came from [here](http://chandermani.blogspot.de/2012/05/caching-images-downloaded-from-web-on.html).
 
 #Usage
 ```xaml
-xmlns:lib="clr-namespace:KhmelenkoLab;assembly=CacheImage"
+xmlns:lib="using:CacheImage"
     
 ...
     
@@ -27,11 +27,11 @@ Control contains the following own properties:
 If you have any suggestions or ideas, feel free to create pull request.
 
 #Warranties
-This library can be used in your projects, however it requires more testing (unit tests, performance tests).
-This library was tested only for Windows Phone (Silverlight).
-Support of Windows 8 and Windows 10 was not tested yet.
+Currently the version of the library for UWP (Windows 10) is the main implementation. 
 
-In case you found any problem, please submit an issue or contact me.
+Library for Windows Phone 8/8.1 (Silverlight) is now *deprecated* and is not recommended for using because of the performance issues.
+
+In case you found any problem, please submit an issue or feel free to create a pull request.
 
 #License
 
