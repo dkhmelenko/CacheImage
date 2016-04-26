@@ -8,5 +8,4 @@
 /SampleApp-UWP/obj
 /SampleApp-UWP/bin
 /SampleApp-UWP/*.pfx
-/SampleApp-UWP/*.json
 /SampleApp-UWP/*.user
