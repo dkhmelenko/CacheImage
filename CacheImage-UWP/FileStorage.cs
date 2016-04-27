@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.Storage.Streams;
 
-namespace CacheImage
+namespace KhmelenkoLab
 {
     /// <summary>
     /// Provides methods for managing storage files

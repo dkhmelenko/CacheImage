@@ -7,7 +7,7 @@
     <ProjectGuid>{A4C44786-FA09-4A0F-BAFE-D6C8666EE588}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CacheImage</RootNamespace>
+    <RootNamespace>KhmelenkoLab</RootNamespace>
     <AssemblyName>CacheImage-UWP</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
