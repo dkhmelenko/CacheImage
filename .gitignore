@@ -7,5 +7,4 @@
 /CacheImage-UWP/obj
 /SampleApp-UWP/obj
 /SampleApp-UWP/bin
-/SampleApp-UWP/*.pfx
 /SampleApp-UWP/*.user
