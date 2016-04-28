@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>Dmytro Khmelenko</authors>
+    <owners>Dmytro Khmelenko</owners>
+    <licenseUrl>https://github.com/brave-warrior/CacheImage#license</licenseUrl>
+    <projectUrl>https://github.com/brave-warrior/CacheImage</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>CacheImage control for downloading and caching images on disk. Once image downloaded and stored, cached image will be shown.</description>
+    <releaseNotes>Initial release of CacheImage library for Windows 10 (UWP)</releaseNotes>
+    <copyright>KhmelenkoLab 2016</copyright>
+    <tags>CacheImage Cache Image Store</tags>
+  </metadata>
+</package>
