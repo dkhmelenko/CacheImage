@@ -8,7 +8,7 @@ CacheImage (Silverlight) for WP8/WP8.1
 
 CacheImage is a lightweight library, which introduces new control - CacheImage for Windows Phone 8/8.1 (Silverlight) and Universal Windows Platform (UWP Windows 10). This control can be used for caching images on disk. As soon as image loaded from the web, local copy will be used. The file name of the local copy contains a hash of the web link. Also, this library provides an ability to set up placeholder, while the image is downloading. The idea of the control came from [here](http://chandermani.blogspot.de/2012/05/caching-images-downloaded-from-web-on.html).
 
-#Usage
+# Usage
 ```xaml
 xmlns:lib="using:CacheImage"
     
@@ -28,17 +28,17 @@ Control contains the following own properties:
 - `Stretch` - appropriate property of BitmapImage of the main image
 - `StretchPlaceholder` - property Stretch of BitmapImage of the placeholder image
 
-#Contribution
+# Contribution
 If you have any suggestions or ideas, feel free to create pull request.
 
-#Warranties
+# Warranties
 Currently the version of the library for UWP (Windows 10) is the main implementation. 
 
 Library for Windows Phone 8/8.1 (Silverlight) is now *deprecated* and is not recommended for using because of the performance issues.
 
 In case you found any problem, please submit an issue or feel free to create a pull request.
 
-#License
+# License
 
 [Apache Licence 2.0](http://www.apache.org/licenses/LICENSE-2.0)
 
